@@ -1,0 +1,57 @@
+/** Editor ED - Header RES: Ressourcen **/
+
+#ifndef __RES_H__
+#define __RES_H__
+
+
+#ifndef IDC_STATIC
+#define IDC_STATIC (-1)
+#endif
+
+/* Bezeichner */
+#define IDM_MENU 100
+#define IDW_WIN_EDIT 201
+#define IDW_WIN_TOOL 202
+#define IDW_WIN_STAT 203
+#define IDI_ICON 300
+#define IDA_ACCEL 400
+#define IDC_VERLINK 500
+#define IDD_VER 501
+
+/* Programmnachrichten */
+#define IDM_FILE_NEW 1101
+#define IDM_FILE_OPEN 1102
+#define IDM_FILE_SAVE 1103
+#define IDM_FILE_SAVEAS 1104
+#define IDM_FILE_PAGESETUP 1105
+#define IDM_FILE_PRINT 1106
+#define IDM_FILE_EXIT 1107
+#define IDM_EDIT_UNDO 1201
+#define IDM_EDIT_CUT 1202
+#define IDM_EDIT_COPY 1203
+#define IDM_EDIT_PASTE 1204
+#define IDM_EDIT_CLEAR 1205
+#define IDM_EDIT_SELALL 1206
+#define IDM_EDIT_INSDATE 1207
+#define IDM_EDIT_FIND 1208
+#define IDM_EDIT_NEXT 1209
+#define IDM_EDIT_REPL 1210
+#define IDM_OPTION_FONTSCR 1301
+#define IDM_OPTION_FONTPRT 1302
+#define IDM_OPTION_PRINTPAGENO 1303
+#define IDM_OPTION_FGCOL 1304
+#define IDM_OPTION_BGCOL 1305
+#define IDM_OPTION_SHOWTOOL 1306
+#define IDM_OPTION_SHOWSTAT 1307
+#define IDM_OPTION_SHOWFULL 1308
+#define IDM_OPTION_SAVE 1309
+#define IDM_OPTION_FONTINC 1310
+#define IDM_OPTION_FONTDEC 1311
+#define IMD_OPTION_COLORMODE 1312
+#define IDM_HELP_COMMANDS 1401
+#define IDM_HELP_VER 1402
+#define IDM_HIDE 1501
+#define IDM_UNHIDE 1502
+
+
+#endif

@@ -1,0 +1,150 @@
+/** Editor ED - Ressourcen **/
+
+#include "top.h"
+#include <windows.h>
+#include <winver.h> // Fuer LCC
+#include "res.h"
+
+/* Sprache */
+LANGUAGE LANG_GERMAN, SUBLANG_NEUTRAL
+
+/* Menue */
+IDM_MENU MENU
+  BEGIN
+  POPUP "&Datei"
+    BEGIN
+    MENUITEM "&Neu\tStrg+N", IDM_FILE_NEW, GRAYED
+    MENUITEM "Ö&ffnen ...\tStrg+O", IDM_FILE_OPEN
+    MENUITEM "&Speichern\tStrg+S", IDM_FILE_SAVE //, GRAYED
+    MENUITEM "Speichern &unter ...", IDM_FILE_SAVEAS //, GRAYED
+    MENUITEM "Seite ein&richten ...", IDM_FILE_PAGESETUP
+    MENUITEM "&Drucken ...\tStrg+P", IDM_FILE_PRINT //, GRAYED
+    MENUITEM SEPARATOR
+    MENUITEM "&Beenden", IDM_FILE_EXIT
+    END
+  #ifdef BUILD_EM
+  POPUP "&Bearbeiten"
+    BEGIN
+    MENUITEM "&Rückgängig\tStrg+Z", IDM_EDIT_UNDO
+    MENUITEM "&Ausschneiden\tStrg+X", IDM_EDIT_CUT
+    MENUITEM "&Kopieren\tStrg+C", IDM_EDIT_COPY
+    MENUITEM "&Einfügen\tStrg+V", IDM_EDIT_PASTE
+    MENUITEM "&Löschen\tEntf", IDM_EDIT_CLEAR
+    #ifdef BUILD_FR
+    MENUITEM SEPARATOR
+    MENUITEM "&Suchen ...\tCtrl+F", IDM_EDIT_FIND
+    MENUITEM "&Weitersuchen\tF3", IDM_EDIT_NEXT
+    MENUITEM "&Ersetzen ...\tCtrl+R", IDM_EDIT_REPL
+    #endif
+    MENUITEM SEPARATOR
+    MENUITEM "Alles &markieren\tStrg+A", IDM_EDIT_SELALL
+    MENUITEM "&Datum einfügen\tStrg+D", IDM_EDIT_INSDATE
+    END
+  #endif
+  POPUP "&Optionen"
+    BEGIN
+    MENUITEM "&Schriftart ...", IDM_OPTION_FONTSCR
+    #ifdef BUILD_UC
+    MENUITEM "Schrift&farbe ...", IDM_OPTION_FGCOL
+    MENUITEM "&Hintergrundfarbe ...", IDM_OPTION_BGCOL
+    #endif
+    MENUITEM SEPARATOR
+    MENUITEM "&Druckerschriftart ...", IDM_OPTION_FONTPRT
+    MENUITEM "Drucke Seiten&zahl", IDM_OPTION_PRINTPAGENO, CHECKED
+    MENUITEM SEPARATOR
+    #ifdef BUILD_TB
+    MENUITEM "&Toolbar", IDM_OPTION_SHOWTOOL
+    #endif
+    MENUITEM "Status&leiste", IDM_OPTION_SHOWSTAT
+    MENUITEM SEPARATOR
+    MENUITEM "&Vollbild\tF11", IDM_OPTION_SHOWFULL
+    MENUITEM SEPARATOR
+    MENUITEM "&Beim Beenden speichern", IDM_OPTION_SAVE
+    END
+  POPUP "&?"
+    BEGIN
+    MENUITEM "&Tastatur", IDM_HELP_COMMANDS
+    MENUITEM "&Version", IDM_HELP_VER
+    END
+  END
+
+/* Tastenkuerzel */
+#ifdef BUILD_AC
+IDA_ACCEL ACCELERATORS
+  BEGIN
+  #ifdef BUILD_ST
+  VK_ESCAPE, IDM_HIDE, VIRTKEY
+  #endif
+  "^N", IDM_FILE_NEW, ASCII
+  "^O", IDM_FILE_OPEN, ASCII
+  "^S", IDM_FILE_SAVE, ASCII
+  "^P", IDM_FILE_PRINT, ASCII
+  VK_BACK, IDM_EDIT_UNDO, VIRTKEY, ALT // In EDIT-Control nicht implementiert, daher hier nachgeholt
+  #ifdef BUILD_FR
+  "^F", IDM_EDIT_FIND, ASCII
+  VK_F3, IDM_EDIT_NEXT, VIRTKEY
+  "^R", IDM_EDIT_REPL, ASCII
+  #endif
+  "^A", IDM_EDIT_SELALL, ASCII // In EDIT-Control nicht implementiert, daher hier nachgeholt
+  "^D", IDM_EDIT_INSDATE, ASCII
+  VK_F2, IMD_OPTION_COLORMODE, VIRTKEY
+  VK_F11, IDM_OPTION_SHOWFULL, VIRTKEY
+  VK_ADD, IDM_OPTION_FONTINC, VIRTKEY, CONTROL
+  VK_SUBTRACT, IDM_OPTION_FONTDEC, VIRTKEY, CONTROL
+  VK_F1, IDM_HELP_COMMANDS, VIRTKEY
+  END
+#endif
+
+/* Dialoge */
+IDD_VER DIALOGEX 60, 18, 219, 49
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Version"
+FONT 8, "MS Shell Dlg"
+  BEGIN
+  DEFPUSHBUTTON "&OK", IDOK, 160, 17, 50, 15
+  ICON IDI_ICON, IDC_STATIC, 13, 13, 21, 20
+  LTEXT "Texteditor in C und Win32-API", IDC_STATIC, 45, 10, 100, 9
+  LTEXT "Version 1.2.0.1", IDC_STATIC, 45, 20, 85, 9
+  LTEXT "2009-2015", IDC_STATIC, 45, 30, 35, 9
+  CONTROL "<a href=""http://www.asdala.de/"">www.asdala.de</a>", IDC_VERLINK, "SysLink", WS_TABSTOP, 82, 30, 55, 9
+  END
+
+/* Bild */
+IDI_ICON ICON "ed.ico"
+
+/* Version */
+VS_VERSION_INFO VERSIONINFO
+  FILEVERSION 1,2,0,1
+  PRODUCTVERSION 1,2,0,1
+  FILEFLAGSMASK 0x3FL
+  #ifdef DEBUG
+  FILEFLAGS 0x1L
+  #else
+  FILEFLAGS 0x0L
+  #endif
+  FILEOS 0x4L
+  FILETYPE 0x1L
+  FILESUBTYPE 0x0L
+  BEGIN
+  BLOCK "StringFileInfo"
+    BEGIN
+    BLOCK "040704E4"
+    BEGIN
+    VALUE "CompanyName", "www.asdala.de\0"
+    VALUE "FileDescription", "Texteditor in C und Win32-API\0"
+    VALUE "FileVersion", "1.2.0.1\0"
+    VALUE "InternalName", "ED\0"
+    VALUE "LegalCopyright", "2009-2015 www.asdala.de\0"
+    VALUE "OriginalFilename", "ed.exe\0"
+    VALUE "ProductName", "ED\0"
+    VALUE "ProductVersion", "1.2\0"
+    END
+    END
+  BLOCK "VarFileInfo"
+    BEGIN
+    VALUE "Translation", 0x0407, 0x04E4
+    END
+  END
+
+/* Manifest */
+1 RT_MANIFEST ed.exe.manifest
